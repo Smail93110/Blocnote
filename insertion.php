@@ -1,55 +1,30 @@
 <?php
  
-
-
- // INSERT ....
-
+include "object.php";
 
 
 
     //ouverture d'une connexion a la bdd agenda
-    $objetPdo = new PDO('mysql:host=localhost;dbname=bloc_note', 'root', '');
+   $objetPdo = new PDO('mysql:host=localhost;dbname=bloc_note', 'root', '');
 
+   $task = new Task($objetPdo, $_POST['name'], $_POST['description'], $_POST['category'], $_POST['date']);
 
-
-       //preparer la requete (SQL)
-       $pdoStat = $objetPdo->prepare('INSERT INTO tasks VALUES(NULL, :name , :description, :date, :category)');
-
-       // Chaque marqueur a une valeur
-       $pdoStat->bindValue(':name', $_POST['name'], PDO::PARAM_STR);
-       $pdoStat->bindValue(':description', $_POST['description'], PDO::PARAM_STR);
-       $pdoStat->bindValue(':date', $_POST['date'], PDO::PARAM_STR);
-       $pdoStat->bindValue(':category', $_POST['category'], PDO::PARAM_STR);
-       var_dump($_POST);
-
-// exécuter la requéte préparer
-
-
-   $insertIsOk   =$pdoStat->execute();
-
-
+   $insertIsOk = $task->save();
+   
 
    if($insertIsOk){
-
-   $message ='Le contact a etait ajouté dans la bdd';
+     
+         $message ='La tache a etait ajouté dans la bdd';
    
-   header ('Location:./index.php ');
+         header ('Location:./index.php ');
    
-   }
-
-   else{
-   $message ='Echec de insertintion';
+   }  else {
+         $message ='Echec de insertintion';
 
    }
-
 
 
 ?>
-
-
-
-
-
 
 
 
