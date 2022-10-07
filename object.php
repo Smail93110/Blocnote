@@ -12,25 +12,30 @@ class Task
 
     public string $date;
 
-    function __construct($bdd, $name, $description, $category, $date)
+    public string $comment;
+
+    function __construct($bdd, $name, $description, $category, $date, $comment)
     {
         $this->bdd = $bdd;
         $this->name = $name;
         $this->description = $description;
         $this->category = $category;
         $this->date = $date;
+        $this->comment =$comment;
     }
 
     function save()
     {
         //preparer la requete (SQL)
-        $pdoStat = $this->bdd->prepare('INSERT INTO tasks VALUES(NULL, :name , :description, :date, :category)');
+        $pdoStat = $this->bdd->prepare('INSERT INTO tasks VALUES(NULL, :name , :description, :date, :category, :comment)');
 
         // Chaque marqueur a une valeur
         $pdoStat->bindValue(':name', $this->name, PDO::PARAM_STR);
         $pdoStat->bindValue(':description', $this->description, PDO::PARAM_STR);
         $pdoStat->bindValue(':date', $this->date, PDO::PARAM_STR);
         $pdoStat->bindValue(':category', $this->category, PDO::PARAM_STR);
+        $pdoStat->bindValue(':comment', $this->comment, PDO::PARAM_STR);
+
         
         return $pdoStat->execute();
 
@@ -39,7 +44,9 @@ class Task
 
     function getTime()
     {
-       
+    //   $date = new Datetime();
+    //  echo $date->format('d/m/Y');
+    //   var_dump($date);
     }
 }
 

@@ -45,9 +45,10 @@ $tasks = $bdd->query('SELECT * FROM tasks');
             <div class="category">
                 <h2><?php echo $task['category']; ?></h2>
                 <form action="insertion.php" method="POST"> //
-                <h3><?php echo $task['comment']; ?></h3> //
+                <h3><?php echo $task['comment']; ?></h3> 
+                <textarea name="comment"></textarea>//
                  <input type="submit" value="Ajouter un commentaire"> //
-                <textarea name="comment"></textarea>
+                
             </form>
             </div>
             <div class="task">
