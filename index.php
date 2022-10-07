@@ -43,13 +43,17 @@ $tasks = $bdd->query('SELECT * FROM tasks');
             </a>
             <hr>
             <div class="category">
-                <h2><?php echo $task['category']; ?></h2> 
+                <h2><?php echo $task['category']; ?></h2>
+                <form action="insertion.php" method="POST"> //
+                <h3><?php echo $task['comment']; ?></h3> //
+                 <input type="submit" value="Ajouter un commentaire"> //
+                <textarea name="comment"></textarea>
+            </form>
             </div>
             <div class="task">
                 <h2><?php echo $task['name']; ?></h2>
                 <h3><?php echo $task['description']; ?></h3>
-                <h3><?php echo $task['date']; ?></h3>
-                
+                <h3><?php echo $task['date']; ?></h3>          
                 <!-- Il reste 3 jours. -->
             </div>
             <?php } ?> 
@@ -82,6 +86,8 @@ $tasks = $bdd->query('SELECT * FROM tasks');
                 <div class="form-input">
                     <input type="submit" value="Ajouter une nouvelle liste"  />
                 </div>
+
+                
             </form>
         </div>
        
