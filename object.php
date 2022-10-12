@@ -21,7 +21,7 @@ class Task
         $this->description = $description;
         $this->category = $category;
         $this->date = $date;
-        $this->comment =$comment;
+        $this->comment = $comment;
     }
 
     function save()
@@ -45,8 +45,23 @@ class Task
     function getTime()
     {
     //   $date = new Datetime();
-    //  echo $date->format('d/m/Y');
+    //   echo $date->format('d/m/Y');
     //   var_dump($date);
+    }
+
+    function setComment($comment)
+    {
+        $this->comment = $comment;
+    }
+
+    function saveComment($id)
+    {
+        $pdoStat = $this->bdd->prepare('UPDATE tasks SET comment = :comment WHERE id = :id');
+
+        $pdoStat->bindValue(':comment', $this->comment);
+        $pdoStat->bindValue(':id', $id);
+
+        return $pdoStat->execute();
     }
 }
 

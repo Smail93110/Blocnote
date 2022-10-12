@@ -7,9 +7,9 @@ include "object.php";
     //ouverture d'une connexion a la bdd agenda
    $objetPdo = new PDO('mysql:host=localhost;dbname=bloc_note', 'root', '');
 
-   $task = new Task($objetPdo, $_POST['name'], $_POST['description'], $_POST['category'], $_POST['date'], $_POST['comment']);
+   $task = new Task($objetPdo, $_POST['name'], $_POST['description'], $_POST['category'], $_POST['date'], '');
 
-   $insertIsOk = $task->save();
+   $insertIsOk = $task->saveComment();
    
 
    if($insertIsOk){
