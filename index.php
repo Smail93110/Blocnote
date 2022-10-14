@@ -6,8 +6,6 @@ $bdd = new PDO('mysql:host=localhost;dbname=bloc_note', 'root', '');
 $tasks = $bdd->query('SELECT * FROM tasks');
 
 
-
-
 // var_dump($task);
 
 /**
