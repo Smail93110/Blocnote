@@ -9,7 +9,7 @@ include "object.php";
 
    $task = new Task($objetPdo, $_POST['name'], $_POST['description'], $_POST['category'], $_POST['date'], '');
 
-   $insertIsOk = $task->saveComment();
+   $insertIsOk = $task->save();
    
 
    if($insertIsOk){
